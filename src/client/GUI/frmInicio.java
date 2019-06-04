@@ -1,19 +1,26 @@
-package LP;
+package client.GUI;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import client.controller.EasyBookingController;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
 public class frmInicio extends JFrame {
+	
+	EasyBookingController controller;
 
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -69,8 +76,18 @@ public class frmInicio extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					frmBusqueda window = new frmBusqueda();
-					window.setVisible(true);
+					String Usuario = textField.getText();
+					String password = new String(passwordField.getPassword());
+					
+					if(controller.IniciarSesion(Usuario, password))
+					{
+						frmBusqueda window = new frmBusqueda(Usuario);
+						window.setVisible(true);
+					}	
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Error al iniciar sesion");
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

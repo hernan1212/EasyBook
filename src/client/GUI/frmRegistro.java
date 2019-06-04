@@ -1,9 +1,11 @@
-package LP;
+package client.GUI;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -13,9 +15,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+
+import client.controller.EasyBookingController;
+
 import java.awt.Color;
 
 public class frmRegistro extends JFrame{
+	
+	EasyBookingController controller;
+	
 	private JTextField textField;
 	private JPasswordField passwordField;
 
@@ -80,8 +88,21 @@ public class frmRegistro extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					frmBusqueda window1 = new frmBusqueda();
-					window1.setVisible(true);
+					
+					String Usuario = textField.getText();
+					String Password = new String(passwordField.getPassword());
+					String Aut_sys_name = (String) comboBox_1.getSelectedItem();
+					String Payment_name = (String) comboBox.getSelectedItem();
+					
+					if (controller.NuevoUsuario(Usuario, Password, Aut_sys_name, Payment_name))
+					{
+						frmBusqueda window1 = new frmBusqueda(Usuario);
+						window1.setVisible(true);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Error al registrarse");
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
