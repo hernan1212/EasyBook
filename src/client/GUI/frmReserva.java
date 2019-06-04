@@ -45,8 +45,10 @@ public class frmReserva extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public frmReserva( FlightDTO flights, String usuario) {
+	public frmReserva( FlightDTO flights, String usuario, EasyBookingController controller) {
+		this.controller=controller;
 		initialize(flights, usuario);
+
 	}
 
 
@@ -97,7 +99,7 @@ public class frmReserva extends JFrame {
 				try {
 					controller.PagoReserva(usuario, flights.getPrecio());
 					
-					frmRegistro window = new frmRegistro();
+					frmBusqueda window = new frmBusqueda(usuario, controller);
 					window.setVisible(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();

@@ -30,8 +30,9 @@ public class frmRegistro extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public frmRegistro() {
+	public frmRegistro(EasyBookingController controller) {
 		initialize();
+		this.controller=controller;
 	}
 
 	/**
@@ -96,7 +97,7 @@ public class frmRegistro extends JFrame{
 					
 					if (controller.NuevoUsuario(Usuario, Password, Aut_sys_name, Payment_name))
 					{
-						frmBusqueda window1 = new frmBusqueda(Usuario);
+						frmBusqueda window1 = new frmBusqueda(Usuario, controller);
 						window1.setVisible(true);
 					}
 					else
@@ -104,7 +105,7 @@ public class frmRegistro extends JFrame{
 						JOptionPane.showMessageDialog(null, "Error al registrarse");
 					}
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					System.out.println("No has seleccionado nada");
 				}
 			}
 		});

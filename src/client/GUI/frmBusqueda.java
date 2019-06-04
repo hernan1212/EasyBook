@@ -24,6 +24,9 @@ import javax.swing.JTextField;
 public class frmBusqueda extends JFrame{
 
 	private JTextField textField;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 
 	EasyBookingController controller;
 	List <FlightDTO> flightList;
@@ -33,8 +36,10 @@ public class frmBusqueda extends JFrame{
 	 * Create the application.
 	 * @param usuario 
 	 */
-	public frmBusqueda(String Usuario) {
+	public frmBusqueda(String Usuario, EasyBookingController controller) {
+		this.controller=controller;
 		initialize(Usuario);
+		
 	}
 
 	/**
@@ -62,17 +67,17 @@ public class frmBusqueda extends JFrame{
 		lblDepartureAirport.setBounds(12, 85, 122, 16);
 		getContentPane().add(lblDepartureAirport);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(12, 114, 122, 28);
-		getContentPane().add(comboBox);
+		textField_3 = new JTextField();
+		textField_3.setBounds(12, 114, 122, 28);
+		getContentPane().add(textField_3);
 		
 		JLabel lblArrivalAirport = new JLabel("Arrival Airport");
 		lblArrivalAirport.setBounds(165, 85, 122, 16);
 		getContentPane().add(lblArrivalAirport);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(165, 114, 122, 28);
-		getContentPane().add(comboBox_1);
+		textField_4 = new JTextField();
+		textField_4.setBounds(165, 114, 122, 28);
+		getContentPane().add(textField_4);
 		
 		JLabel lblDate = new JLabel("Date");
 		lblDate.setBounds(332, 85, 122, 16);
@@ -87,9 +92,10 @@ public class frmBusqueda extends JFrame{
 		lblPassengers.setBounds(400, 85, 75, 16);
 		getContentPane().add(lblPassengers);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(400, 117, 75, 28);
-		getContentPane().add(comboBox_2);
+		textField_2 = new JTextField();
+		textField_2.setBounds(400, 117, 75, 28);
+		getContentPane().add(textField_2);
+		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -99,10 +105,10 @@ public class frmBusqueda extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String departure_airport = (String) comboBox.getSelectedItem();
-					String arrival_airport = (String) comboBox_1.getSelectedItem();
+					String departure_airport = textField_3.getText();
+					String arrival_airport = textField_4.getText();
 					String date = textField.getText();
-					int passengers = (int) comboBox_2.getSelectedItem();
+					int passengers = Integer.parseInt(textField_2.getText());
 					
 					flightList = controller.BuscarVuelo(departure_airport, arrival_airport, date, passengers);
 					
@@ -110,7 +116,7 @@ public class frmBusqueda extends JFrame{
 					{
 						modeloLista.addElement(flights);
 					}
-					frmReserva window = new frmReserva((FlightDTO) list.getSelectedValue(), Usuario);
+					frmReserva window = new frmReserva((FlightDTO) list.getSelectedValue(), Usuario, controller);
 					window.setVisible(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();

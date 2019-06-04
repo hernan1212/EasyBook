@@ -23,7 +23,7 @@
     </target>
     
 	<target name="2.client" depends="1.build"  description="Runs Client program">
-		<java classname="client.controller.EasyBookingController" classpathref="classpath" fork="true">
+		<java classname="client.controller.clsMain" classpathref="classpath" fork="true">
 			<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}"/>
 			<jvmarg value="-Djava.security.policy=${policy.file}"/>				
         	<arg value="${rmiregistry.IP}"/> 

@@ -1,6 +1,5 @@
 package client.GUI;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +19,8 @@ import javax.swing.JButton;
 
 public class frmInicio extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
+
 	EasyBookingController controller;
 
 	private JTextField textField;
@@ -28,8 +29,9 @@ public class frmInicio extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public frmInicio() {
+	public frmInicio(EasyBookingController controller) {
 		initialize();
+		this.controller=controller;
 	}
 
 	/**
@@ -81,7 +83,7 @@ public class frmInicio extends JFrame {
 					
 					if(controller.IniciarSesion(Usuario, password))
 					{
-						frmBusqueda window = new frmBusqueda(Usuario);
+						frmBusqueda window = new frmBusqueda(Usuario, controller);
 						window.setVisible(true);
 					}	
 					else
@@ -110,7 +112,7 @@ public class frmInicio extends JFrame {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						try {
-							frmRegistro window = new frmRegistro();
+							frmRegistro window = new frmRegistro(controller);
 							window.setVisible(true);
 						} catch (Exception e1) {
 							e1.printStackTrace();
