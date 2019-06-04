@@ -3,7 +3,7 @@ package client.controller;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import LN.FlightDTO;
+import assemble.FlightDTO;
 import client.GUI.frmInicio;
 import client.remote.RMIServiceLocator;
 
@@ -18,7 +18,7 @@ public class EasyBookingController
 	{		
 		// Add your related code for the initialization of the Service Locator
 		rsl = new RMIServiceLocator();
-		rsl.setService("localhost", "1050", "ServEB");
+		rsl.setService("127.0.0.1", "1000", "ServEB");
 		
 		new frmInicio();
 	}
@@ -62,7 +62,7 @@ public class EasyBookingController
     	try
     	{	
     		// Add your related to getting the service and sending a message
-    		flightList = rsl.getService().BuscarVuelo(Origen, Destino, Fecha, Passenger);
+    		flightList = rsl.getService().BuscarVuelos(Origen, Destino, Fecha, Passenger);
     	} 
     	catch(Exception e)
     	{
@@ -71,10 +71,12 @@ public class EasyBookingController
 		return flightList;
     }
     public void ReservarVuelo(FlightDTO MiVuelo){
+    	String vuelo="";
+    	int pasajero=0;
     	try
     	{	
     		// Add your related to getting the service and sending a message
-    		rsl.getService().ReservarVuelo(MiVuelo);
+    		rsl.getService().ReservarVuelo(MiVuelo, vuelo, pasajero );
     	} 
     	catch(Exception e)
     	{

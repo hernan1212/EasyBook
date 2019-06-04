@@ -3,7 +3,7 @@ package client.remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import server.remote.IFacade;
+import remote.IFacade;
 
 public class RMIServiceLocator
 {
@@ -31,8 +31,8 @@ public class RMIServiceLocator
     	try 
 		{ 	System.out.println("1");
 			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(port))));
-			System.out.println("2");
-			String name = "//" + ip + ":" + port + "/" + serviceName;			
+			System.out.println("127.0.0.1");
+			String name = "//" + "127.0.0.1" + ":" + port + "/" + serviceName;			
 			this.service = (IFacade) registry.lookup(name);
 			System.out.println("* Server: " + this.getService().sayHello() );			
 		} 

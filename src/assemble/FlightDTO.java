@@ -1,4 +1,4 @@
-package LN;
+package assemble;
 
 public class FlightDTO 
 {

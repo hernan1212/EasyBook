@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import LN.FlightDTO;
+import assemble.FlightDTO;
 import client.controller.EasyBookingController;
 
 import javax.swing.JButton;

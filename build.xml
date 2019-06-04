@@ -4,8 +4,8 @@
 	<property name="source.dir" location="src"/>
    	<property name="build.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
-	<property name="rmiregistry.port" value="1050"/>
-	<property name="rmiregistry.IP" value="localhost"/> 
+	<property name="rmiregistry.port" value="1000"/>
+	<property name="rmiregistry.IP" value="127.0.0.1"/> 
 	<property name="EasyBooking.server.name" value="ServEB"/>
 	<property name="policy.file" location="security/java.policy"/>	
 

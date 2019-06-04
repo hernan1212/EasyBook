@@ -12,7 +12,7 @@ import java.util.List;
 
 import javax.swing.SwingConstants;
 
-import LN.FlightDTO;
+import assemble.FlightDTO;
 import client.controller.EasyBookingController;
 
 import javax.swing.JList;
